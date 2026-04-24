@@ -57,7 +57,7 @@ def create_degree():
 def create_section():
     return render_template("create_section.html")
 
-@app.route("edit-degree", methods=["POST", "GET"])
+@app.route("/edit-degree/", methods=["POST", "GET"])
 def edit_degree():
     pass
 
