@@ -13,6 +13,17 @@ MONTH_ABBR_MAP = {
 INT_TO_MONTH = {v: k for k, v in MONTH_TO_INT.items()}
 
 def month_int_converter(input: str | int) -> int | str:
+    """A function that accepts a month as the nume, the abbreviation, or the number corresponding to that month, and reuturns the other.
+
+    Args:
+        input (str | int): The name/abbreviation of the month, or the number 1-12 corresponding to that month.
+
+    Raises:
+        ValueError: Raised if the input doesn't correspond to any month string or is a number outiside of 1-12 or is not an int datatype
+
+    Returns:
+        int | str: The corresponding month to the given input. Either The full written month (not abbreviated) or the integer corresponding to the input.
+    """
     error_msg = f"Invalid input '{input}'. Expected a month name or an integer from 1 to 12."
     if isinstance(input, str):
         if input in MONTH_TO_INT:
