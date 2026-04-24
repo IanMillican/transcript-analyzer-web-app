@@ -1,0 +1,408 @@
+{
+    "program": "BCS",
+    "excluded_subjects": [],
+    "excluded_courses": ["CS1003"],
+    "sections": [
+        {
+            "name": "CS Core",
+            "priority": 1,
+            "requirements": {
+                "and": [
+                    {
+                        "Subject": "CS", 
+                        "Number": 1073, 
+                        "Name": "Introduction to Computer Programming I (in Java)", 
+                        "CreditHours": 4, 
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS", 
+                        "Number": 1083, 
+                        "Name": "Introduction to Computer Programming II (in Java)", 
+                        "CreditHours": 4, 
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS", 
+                        "Number": 1103, 
+                        "Name": "Introduction to Databases", 
+                        "CreditHours": 4, 
+                        "Coop": false
+                    },
+                    {"xor": [
+                        {
+                            "Subject": "CS", 
+                            "Number": 1303, 
+                            "Name": "Discrete Structures", 
+                            "CreditHours": 4, 
+                            "Coop": false
+                        }, 
+                        {
+                            "Subject": "MATH",
+                            "Number": 2203,
+                            "Name": "Discrete Math",
+                            "CreditHours": 3,
+                            "Coop": false
+                        }]
+                    },
+                    {
+                    "Subject": "CS",
+                        "Number": 2043,
+                        "Name": "Introduction to Software Engineering",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 2253,
+                        "Name": "Machine Level Programming",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 2263,
+                        "Name": "Systems Software Development",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 2333,
+                        "Name": "Computability and Formal Languages",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 2383,
+                        "Name": "Data Structures and Algorithms",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 3383,
+                        "Name": "Algorithm Design and Analysis",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 3413,
+                        "Name": "Operating Systems I",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 3853,
+                        "Name": "Computer Architecture and Organization",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 3873,
+                        "Name": "Net-centric Computing",
+                        "CreditHours": 4,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "CS",
+                        "Number": 3997,
+                        "Name": "Professional Practice",
+                        "CreditHours": 3,
+                        "Coop": false
+                    }
+                    
+                ]
+            }
+        },
+        {
+            "name": "Math/Stat Core",
+            "priority": 2,
+            "requirements": {
+                "and": [
+                    {
+                        "xor": [
+                            {
+                                "Subject": "MATH",
+                                "Number": 1003,
+                                "Name": "Calculus I: Differential Calculus",
+                                "CreditHours": 3,
+                                "Coop": false
+                            },
+                            { 
+                                "Subject": "MATH",
+                                "Number": 1053,
+                                "Name": "Enriched Introduction to Calculus",
+                                "CreditHours": 3,
+                                "Coop": false
+                            }
+                        ]
+                    },
+                    {
+                        "xor": [
+                            {
+                                "Subject": "MATH",
+                                "Number": 1013,
+                                "Name": "Calculus II: Integral Calculus",
+                                "CreditHours": 3,
+                                "Coop": false
+                            },
+                            {
+                                "Subject": "MATH",
+                                "Number": 1063,
+                                "Name": "Enriched Introduction to Calculus II",
+                                "CreditHours": 3,
+                                "Coop": false
+                            }
+                        ]
+                    },
+                    {
+                        "xor": [
+                            {
+                                "Subject": "MATH",
+                                "Number": 1503,
+                                "Name": "Introduction to Linear Algebra",
+                                "CreditHours": 3,
+                                "Coop": false
+                                }, 
+                                {
+                                "Subject": "MATH",
+                                "Number": 2213,
+                                "Name": "Linear Algebra I",
+                                "CreditHours": 3,
+                                "Coop": false
+                            }                
+                        ]
+                    },
+                    {
+                        "or": [
+                            {
+                                "and": [
+                                    {
+                                        "Subject": "STAT",
+                                        "Number": 2593,
+                                        "Name": "Probability and Statistics for Engineers",
+                                        "CreditHours": 3,
+                                        "Coop": false
+                                    },
+                                    {
+                                        "or": [
+                                            {
+                                                "Subject": "CS",
+                                                "Number": 3113,
+                                                "Name": "Introduction to Numerical Methods",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 2003,
+                                                "Name": "Calculus III: Multivariable Calculus",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 2513,
+                                                "Name": "Multivariable Calculus for Engineers",
+                                                "CreditHours": 4,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3033,
+                                                "Name": "Group Theory",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3063,
+                                                "Name": "Geometry",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3093,
+                                                "Name": "Elementary Number Theory",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3213,
+                                                "Name": "Linear Algebra II",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3333,
+                                                "Name": "Combinatorial Theory",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3343,
+                                                "Name": "Networks and Graphs",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3353,
+                                                "Name": "Computational Algebra",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3363,
+                                                "Name": "Finite Mathematics",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3373,
+                                                "Name": "Introduction to Game Theory",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3383,
+                                                "Name": "Introduction to Mathematical Logic",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3413,
+                                                "Name": "Introduction to Numerical Methods",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 3803,
+                                                "Name": "Introduction to Mathematics of Finance",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "MATH",
+                                                "Number": 4503,
+                                                "Name": "Numerical Methods for Differential Equations",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "STAT",
+                                                "Number": 3093,
+                                                "Name": "Probability and Mathematical Statistics II",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "STAT",
+                                                "Number": 3303,
+                                                "Name": "Survival Analysis",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "STAT",
+                                                "Number": 3373,
+                                                "Name": "Elementary Experimental Design",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            },
+                                            {
+                                                "Subject": "STAT",
+                                                "Number": 4083,
+                                                "Name": "Multivariate Methods for Statistical Learning",
+                                                "CreditHours": 3,
+                                                "Coop": false
+                                            }
+                                            
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "and": [
+                                    {
+                                        "Subject": "STAT",
+                                        "Number": 3083,
+                                        "Name": "Probability and Mathematical Statistics I",
+                                        "CreditHours": 3,
+                                        "Coop": false
+                                    },
+                                    {
+                                        "Subject": "STAT",
+                                        "Number": 3093,
+                                        "Name": "Probability and Mathematical Statistics II",
+                                        "CreditHours": 3,
+                                        "Coop": false
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Technical Electives",
+            "priority": 3,
+            "requirements": {
+                "constraint": {
+                    "count": 7,
+                    "min_credit_hours": 21,
+                    "include_subject": ["CS", "SWE"],
+                    "exclude_subject": [],
+                    "min_level_2000": 0,
+                    "min_level_3000": 3,
+                    "min_level_4000": 1
+                }
+            }
+        },
+        {
+            "name": "Breadth Electives",
+            "priority": 4,
+            "requirements": {
+                "constraint": {
+                    "count": 10,
+                    "min_credit_hours": 30,
+                    "include_subject": [],
+                    "exclude_subject": ["CS", "SWE", "MATH", "STAT"],
+                    "min_level_2000": 2,
+                    "min_level_3000": 0,
+                    "min_level_4000": 0
+                }
+            }
+        },
+        {
+            "name": "Free Electives",
+            "priority": 5,
+            "requirements": {
+                "constraint": {
+                    "count": 4,
+                    "min_credit_hours": 12,
+                    "include_subject": [],
+                    "exclude_subject": [],
+                    "min_level_2000": 0,
+                    "min_level_3000": 0,
+                    "min_level_4000": 0
+                }
+            }
+        }
+    ]
+}

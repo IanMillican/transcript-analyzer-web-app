@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Transcript Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="card">
+            <h1>Welcome to the Transcript Analyzer</h1>
+                <form action="/upload/" method="POST" enctype="multipart/form-data">
+                    <label for="transcript" class="file-label">
+                        Choose PDF
+                    </label>
+                    <input type="file" name="transcript" id="transcript" accept=".pdf">
+                    <span class="file-name">No file chosen</span>
+                    <button type="submit">Upload</button>
+                </form>
+            {% if error %}
+                <p class="error">{{error}}</p>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        document.getElementById('transcript').addEventListener('change', function() {
+            const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
+            document.querySelector('.file-name').textContent = fileName;
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,47 @@
+.results-container {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.results-left {
+    flex: 1;
+}
+
+.results-right {
+    flex: 1;
+}
+
+table {
+    margin-bottom: 1.5rem;
+    table-layout: fixed;
+    width: 100%;
+}
+
+th.section-header {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    padding: 0.5rem 1rem;
+}
+
+th.col-header {
+    background-color: var(--bg-primary);
+    color: var(--text-secondary);
+    font-weight: bold;
+    border-bottom: 2px solid var(--accent);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--bg-secondary);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--bg-tertiary);
+}
+
+td.non-name-col {
+    text-align: center;
+}

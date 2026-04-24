@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Create Degree</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='create_degree.css') }}">
+{% endblock %}
+{% block body %}
+    <ul>
+        <li><label for="degree_name">Program Abbreviation: </label><input type="text" id="degree_name" name="degree_name"></li>
+        <li><label for="excluded_subjects">Excluded Subjects: </label><input type="text" id="excluded_subjects" name="excluded_subjects"></li>
+        <li><label for="excluded_courses">Excluded Courses: </label><input type="text" id="excluded_courses" name="excluded_courses"></li>
+        <li>
+            <label>Sections</label>
+            <div class="sections">
+
+            </div>
+        </li>
+    </ul>
+    <button onclick="window.location.href='/create-section/'">Add Section</button>
+    <button class="completed_degree" onclick="saveDegree()">Done</button>
+    <script src="{{ url_for('static', filename='js/create_degree.js') }}"></script>
+{% endblock %}

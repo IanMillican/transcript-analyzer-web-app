@@ -1,0 +1,43 @@
+.children {
+    padding-left: 2rem;
+    border-left: 2px solid var(--border);
+}
+
+.section-builder {
+    padding: 2rem;
+}
+
+.requirement-node {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+
+.operator-select {
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.add-sibling {
+    background-color: var(--accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--text-primary);
+    display: inline-block;
+}
+
+.remove-node {
+    background-color: var(--unsatisfied);
+}
+
+.add-sibling, .remove-node {
+    width: fit-content;
+}

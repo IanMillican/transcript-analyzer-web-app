@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Create Section</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='create_section.css') }}">
+{% endblock %}
+{% block body %}
+    <ul>
+        <li><label for="section_name">Section Name: </label><input type="text" id="section_name" name="section_name"></li>
+        <li>
+            <label>Enter requirements below, start with an "All of" node for sections that have many specific requirements</label>
+            <div class="requirement-node" data-depth="0">
+                <select class="operator-select">
+                    <option value="">-- Select --</option>
+                    <option value="and">All of</option>
+                    <option value="or">At least one of</option>
+                    <option value="xor">Exactly one of</option>
+                    <option value="course">Course</option>
+                    <option value="constraint">Constraint</option>
+                </select>
+                <div class="children" hidden>
+
+                </div>
+            </div>
+        </li>
+    </ul>
+    <button class="completed_section" onclick="saveSection()">Done</button>
+    <script src="{{ url_for('static', filename='js/create_section.js') }}"></script>
+{% endblock %}

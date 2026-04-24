@@ -1,0 +1,72 @@
+{
+    "program": "BSC",
+    "excluded_subjects": [],
+    "excluded_courses": [],
+    "sections": [
+        {
+            "name": "Math Core",
+            "priority": 1,
+            "requirements": {
+                "and": [
+                    {
+                        "xor": [
+                            {
+                                "Subject": "MATH",
+                                "Number": 1003,
+                                "Name": "Calculus I: Differential Calculus",
+                                "CreditHours": 3,
+                                "Coop": false
+                            },
+                            {
+                                "Subject": "MATH",
+                                "Number": 1053,
+                                "Name": "Enriched Introduction to Calculus",
+                                "CreditHours": 3,
+                                "Coop": false
+                            }
+                        ]
+                    },
+                    {
+                        "Subject": "MATH",
+                        "Number": 1013,
+                        "Name": "Calc2",
+                        "CreditHours": 3,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "MATH",
+                        "Number": 1503,
+                        "Name": "Lin Alg",
+                        "CreditHours": 3,
+                        "Coop": false
+                    },
+                    {
+                        "Subject": "MATH",
+                        "Number": 2203,
+                        "Name": "Discrete math",
+                        "CreditHours": 3,
+                        "Coop": false
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Upper Year NonMath",
+            "priority": 2,
+            "requirements": {
+                "constraint": {
+                    "count": 5,
+                    "min_credit_hours": 15,
+                    "include_subject": [],
+                    "exclude_subject": [
+                        "MATH",
+                        "STAT"
+                    ],
+                    "min_level_2000": 0,
+                    "min_level_3000": 5,
+                    "min_level_4000": 0
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% macro render_requirement(req_result) %}
+    {% if req_result.original_requirement.node_type.value == 'course' %}
+        <tr>
+            <td>{{ req_result.original_requirement.course.course_code }}: {{ req_result.original_requirement.course.name }}</td>
+            <td class="non-name-col">{{ req_result.original_requirement.course.credit_hours }}</td>
+            <td class="non-name-col">{{ '✓' if req_result.satisfied else '✗' }}</td>
+        </tr>
+    {% elif req_result.original_requirement.node_type.value == 'and'%}
+        {% for child in req_result.child_results %}
+            {{ render_requirement(child)}}
+        {% endfor %}
+    {% elif req_result.original_requirement.node_type.value in ('or', 'xor') %}
+        {% if req_result.satisfied %}
+            {{ render_requirement(req_result.child_results[req_result.selected_index])}}
+        {% else %}
+            <tr>
+                <td colspan="3">
+                    <select>
+                        {% for child in req_result.child_results %}
+                            {% set statuses = child.get_branch_course_status() %}
+                            <option value="{{ loop.index0 }}" {% if loop.index0 == req_result.selected_index %}selected{% endif %}>
+                                {% for code, satisfied in statuses %}
+                                    {{ code }}{% if satisfied %} ✓{% else %} ✗{% endif %}{% if not loop.last %}, {% endif %}
+                                {% endfor %}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            {{ render_requirement(req_result.child_results[req_result.selected_index]) }}
+        {% endif %}
+    {% elif req_result.original_requirement.node_type.value == 'constraint' %}
+        {% set total_needed = req_result.constraint_matches.keys() | first %}
+        {% set courses = req_result.constraint_matches[total_needed] %}
+        {% for i in range(total_needed) %}
+        {% if i < courses | length %}
+            <tr>
+                <td>{{ courses[i].course_code }}: {{ courses[i].name }}</td>
+                <td class="non-name-col">{{ courses[i].credit_hours }}</td>
+                <td class="non-name-col">✓</td>
+            </tr>
+            {% else %}
+               <tr>
+                    <td>To be determined</td>
+                    <td class="non-name-col"></td>
+                    <td class="non-name-col">✗</td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endmacro %}
+
+{% block head %}
+    <title>Evaluated Transcript</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='transcript_preview.css') }}">
+{% endblock %}
+{% block body %}
+    {% if result %}
+        {% set left_sections = result.section_results | selectattr('original_section.priority', 'le', 3) | list %}
+        {% set right_sections = result.section_results | selectattr('original_section.priority', 'gt', 3) | list %}
+        <div class="results-container">
+            <div class="results-left">
+                {% for sec in left_sections %}
+                    <table>
+                        <colgroup>
+                            <col style="width: 70%">
+                            <col style="width: 15%">
+                            <col style="width: 15%">
+                        </colgroup>
+                        <thead>
+                            <tr><th class="section-header" colspan="3">{{ sec.original_section.name }}</th></tr>
+                            <tr><th class="col-header">Course</th><th class="col-header">CH</th><th class="col-header">Status</th></tr>
+                        </thead>
+                        <tbody>
+                            {{ render_requirement(sec.root_requirement) }}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            </div>
+            <div class="results-right">
+                {% for sec in right_sections %}
+                    <table>
+                        <colgroup>
+                            <col style="width: 70%">
+                            <col style="width: 15%">
+                            <col style="width: 15%">
+                        </colgroup>
+                        <tr><th class="section-header" colspan="3">{{ sec.original_section.name }}</th></tr>
+                        <tr><th class="col-header">Course</th><th class="col-header">CH</th><th class="col-header">Status</th></tr>
+                        {{ render_requirement(sec.root_requirement) }}
+                    </table>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
