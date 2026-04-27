@@ -142,6 +142,13 @@ Then open your browser to [http://127.0.0.1:5000](http://127.0.0.1:5000).
 3. Add sections and build each section's requirement tree using the interactive builder
 4. Submit — the degree is saved as a JSON file in `data_access/config/requirements/`
 
+### Editing an Esisting Degree
+
+1. Go to **Data Management → Create Degree** in the nav
+2. Select the degree program from the drop-down list provided
+3. Alter any information the degree information as you would if creating it from scratch
+4. Select a section and edit it as if you were creating it from scratch
+
 ---
 
 ## Degree JSON Format
