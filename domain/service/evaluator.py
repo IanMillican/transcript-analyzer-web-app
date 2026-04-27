@@ -9,6 +9,7 @@ from domain.model.results.requirement_result import RequirementResult
 import copy
 
 INVALID_GRADES = [
+    "D",
     "F",
     "W",
     "WF",

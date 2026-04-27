@@ -21,6 +21,11 @@ def parse_courses(term: list[str]) -> list[CourseAttempt]:
             transfer_list = [] if transfers is None else [t.strip() for t in transfers.split(" ")]
             if code.isdigit() and len(code) == 4:
                 num = int(code)
+                if f"{subject} {code}" == "PHYS 1081":
+                    new_course = CourseAttempt(subject, num, title, 3, grade, transfer_list)
+                    courses.append(new_course)
+                    new_course = CourseAttempt(subject, num, title, 2, grade, transfer_list)
+                    courses.append(new_course)
                 new_course = CourseAttempt(subject, num, title, credit_hour, grade, transfer_list)
                 courses.append(new_course)
             else:

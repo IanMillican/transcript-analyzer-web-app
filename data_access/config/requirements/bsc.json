@@ -103,6 +103,13 @@
                         "Name": "Complex Analysis",
                         "Number": 3243,
                         "Subject": "MATH"
+                    },
+                    {
+                        "Coop": false,
+                        "CreditHours": 3,
+                        "Name": "Applied Analysis",
+                        "Number": 3003,
+                        "Subject": "MATH"
                     }
                 ]
             }
