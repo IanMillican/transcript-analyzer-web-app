@@ -83,27 +83,8 @@ document.addEventListener('click', function(event) {
         node.querySelector(':scope > .add-sibling').setAttribute('hidden', '');
         parentChildrenDiv.insertAdjacentHTML('beforeend', createRequirementNode());
         const siblings = parentChildrenDiv.querySelectorAll(':scope > .requirement-node');
-        console.log('number of siblings:', siblings.length);
-        console.log('last sibling:', siblings[siblings.length - 1]);
-        console.log('last sibling add button:', siblings[siblings.length - 1].querySelector(':scope > .add-sibling'));
         siblings[siblings.length - 1].querySelector(':scope > .add-sibling').removeAttribute('hidden');
         node.querySelector(':scope > .add-sibling').setAttribute('hidden', '');
-        console.log('first sibling button hidden:', node.querySelector(':scope > .add-sibling').hasAttribute('hidden'));
-
-        function getDepth(el) {
-            let depth = 0;
-            let current = el;
-            while (current.parentElement) {
-                if (current.classList.contains('requirement-node')) depth++;
-                current = current.parentElement;
-            }
-            return depth;
-        }
-
-        const allAddButtons = document.querySelectorAll('.add-sibling');
-        allAddButtons.forEach(function(btn) {
-            console.log('button depth:', getDepth(btn), 'hidden:', btn.hasAttribute('hidden'));
-        });
     } else if (event.target.classList.contains('remove-node')) {
         const node = event.target.parentElement;
         const parentChildrenDiv = node.parentElement;
@@ -169,7 +150,7 @@ function saveSection() {
 
     // Get the root requirement node and build the JSON
     const rootNode = document.querySelector('.requirement-node');
-    if (!validateSection(rootNode) || sectionName === "" || sectionName === null) {
+     if (!validateSection(rootNode) || sectionName === "" || sectionName === null) {
         alert('Section name is required');
         return;
     }
@@ -205,8 +186,30 @@ function saveSection() {
     // Save back to localStorage
     localStorage.setItem('degree_in_progress', JSON.stringify(degree));
 
-    // Navigate back to create_degree page
-    window.location.href = '/create-degree/';
+    // Navigate back to create_degree or edit_degree page
+    const fromEdit = urlParams.get('from') === 'edit';
+    const editingFile = localStorage.getItem('editing_file');
+    if (fromEdit) {
+        // POST the updated degree to Flask to write the file
+        const updatedDegree = JSON.parse(localStorage.getItem('degree_in_progress'));
+        fetch('/create-degree/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ...updatedDegree, overwrite: true })
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            if (data.redirect) {
+                window.location.href = `/edit-degree/?file_path=${editingFile}`;
+            } else if (data.error) {
+                alert(data.error);
+            }
+        }).catch(function(error) {
+            console.log('fetch error:', error);
+        });
+    } else {
+        window.location.href = '/create-degree/';
+    }
 }
 
 function validateSection(root) {
@@ -233,3 +236,70 @@ function validateSection(root) {
         return ret
     }
 }
+
+function loadSection() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const editIndex = urlParams.get('edit')
+    if (editIndex === null) return;
+
+    const degree = JSON.parse(localStorage.getItem('degree_in_progress'));
+    const section = degree.sections[parseInt(editIndex)];
+
+    document.getElementById('section_name').value = section.name;
+
+    const rootNode = document.querySelector('.requirement-node');
+    buildTreeFromJSON(rootNode, section.requirements);
+}
+
+function buildTreeFromJSON(node, requirements) {
+    const nodeType = getNodeType(requirements);
+    const select = node.querySelector(':scope > select.operator-select');
+    select.value = nodeType;
+    select.dispatchEvent(new Event('change', { bubbles: true }));
+    const childrenDiv = node.querySelector(':scope > .children');
+    if (nodeType === 'course') {
+        childrenDiv.querySelector('.course_code').value = requirements.Subject + '*' + requirements.Number;
+        childrenDiv.querySelector('.course_name').value = requirements.Name;
+        childrenDiv.querySelector('.credit_hour').value = requirements.CreditHours;
+    } else if (nodeType === 'constraint') {
+        const constraint = requirements.constraint;
+        childrenDiv.querySelector('.count').value = constraint.count;
+        childrenDiv.querySelector('.min_credit_hours').value = constraint.min_credit_hours;
+        childrenDiv.querySelector('.include_subject').value = constraint.include_subject.join(', ');
+        childrenDiv.querySelector('.exclude_subject').value = constraint.exclude_subject.join(', ');
+        childrenDiv.querySelector('.min_level_2000').value = constraint.min_level_2000;
+        childrenDiv.querySelector('.min_level_3000').value = constraint.min_level_3000;
+        childrenDiv.querySelector('.min_level_4000').value = constraint.min_level_4000;
+    } else {
+        const children = requirements[nodeType];
+        children.forEach(function(child, index) {
+            if (index > 0) {
+                const lastSibling = childrenDiv.querySelector(':scope > .requirement-node:last-child');
+                lastSibling.querySelector(':scope > .add-sibling').setAttribute('hidden', '');
+                childrenDiv.insertAdjacentHTML('beforeend', createRequirementNode());
+            }
+            const childNodes = childrenDiv.querySelectorAll(':scope > .requirement-node');
+            buildTreeFromJSON(childNodes[index], child);
+        });
+        const allSiblings = childrenDiv.querySelectorAll(':scope > .requirement-node');
+        if (allSiblings.length > 0) {
+            allSiblings[allSiblings.length - 1].querySelector(':scope > .add-sibling').removeAttribute('hidden');
+        }
+    }
+}
+
+function getNodeType(requirements) {
+    if ('and' in requirements) return 'and';
+    if ('or' in requirements) return 'or';
+    if ('xor' in requirements) return 'xor';
+    if ('constraint' in requirements) return 'constraint';
+    if ('Subject' in requirements) return 'course';
+    return null;
+}
+
+window.addEventListener('load', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('edit') !== null) {
+        loadSection()
+    }
+});

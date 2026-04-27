@@ -15,7 +15,6 @@ class Term:
         self.courses.append(course)
     
     def get_courses(self, degree: str | None = None) -> list[CourseAttempt]:
-        print(self.degree)
         if degree is None:
             return list(self.courses)
         else:

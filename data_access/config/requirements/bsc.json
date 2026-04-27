@@ -1,7 +1,7 @@
 {
-    "program": "BSC",
-    "excluded_subjects": [],
     "excluded_courses": [],
+    "excluded_subjects": [],
+    "program": "BSC",
     "sections": [
         {
             "name": "Math Core",
@@ -11,41 +11,98 @@
                     {
                         "xor": [
                             {
-                                "Subject": "MATH",
-                                "Number": 1003,
-                                "Name": "Calculus I: Differential Calculus",
+                                "Coop": false,
                                 "CreditHours": 3,
-                                "Coop": false
+                                "Name": "Calculus I: Differential Calculus",
+                                "Number": 1003,
+                                "Subject": "MATH"
                             },
                             {
-                                "Subject": "MATH",
-                                "Number": 1053,
-                                "Name": "Enriched Introduction to Calculus",
+                                "Coop": false,
                                 "CreditHours": 3,
-                                "Coop": false
+                                "Name": "Enriched Introduction to Calculus",
+                                "Number": 1053,
+                                "Subject": "MATH"
                             }
                         ]
                     },
                     {
-                        "Subject": "MATH",
-                        "Number": 1013,
-                        "Name": "Calc2",
-                        "CreditHours": 3,
-                        "Coop": false
+                        "xor": [
+                            {
+                                "Coop": false,
+                                "CreditHours": 3,
+                                "Name": "Calculus II: Integral Calculus",
+                                "Number": 1013,
+                                "Subject": "MATH"
+                            },
+                            {
+                                "Coop": false,
+                                "CreditHours": 3,
+                                "Name": "Enriched Introduction to Calculus II",
+                                "Number": 1063,
+                                "Subject": "MATH"
+                            }
+                        ]
                     },
                     {
-                        "Subject": "MATH",
-                        "Number": 1503,
-                        "Name": "Lin Alg",
-                        "CreditHours": 3,
-                        "Coop": false
+                        "xor": [
+                            {
+                                "Coop": false,
+                                "CreditHours": 3,
+                                "Name": "Introduction to Linear Algebra",
+                                "Number": 1503,
+                                "Subject": "MATH"
+                            },
+                            {
+                                "Coop": false,
+                                "CreditHours": 3,
+                                "Name": "Linear Algebra 1",
+                                "Number": 2213,
+                                "Subject": "MATH"
+                            }
+                        ]
                     },
                     {
-                        "Subject": "MATH",
+                        "Coop": false,
+                        "CreditHours": 3,
+                        "Name": "Discrete Mathematics",
                         "Number": 2203,
-                        "Name": "Discrete math",
+                        "Subject": "MATH"
+                    },
+                    {
+                        "Coop": false,
                         "CreditHours": 3,
-                        "Coop": false
+                        "Name": "Calculus III: Multivariable Calculus",
+                        "Number": 2003,
+                        "Subject": "MATH"
+                    },
+                    {
+                        "Coop": false,
+                        "CreditHours": 3,
+                        "Name": "Calculus IV: Vector Calculus",
+                        "Number": 2013,
+                        "Subject": "MATH"
+                    },
+                    {
+                        "Coop": false,
+                        "CreditHours": 3,
+                        "Name": "Group Theory",
+                        "Number": 3033,
+                        "Subject": "MATH"
+                    },
+                    {
+                        "Coop": false,
+                        "CreditHours": 3,
+                        "Name": "Linear Algebra II",
+                        "Number": 3213,
+                        "Subject": "MATH"
+                    },
+                    {
+                        "Coop": false,
+                        "CreditHours": 3,
+                        "Name": "Complex Analysis",
+                        "Number": 3243,
+                        "Subject": "MATH"
                     }
                 ]
             }
@@ -56,14 +113,134 @@
             "requirements": {
                 "constraint": {
                     "count": 5,
-                    "min_credit_hours": 15,
-                    "include_subject": [],
                     "exclude_subject": [
                         "MATH",
                         "STAT"
                     ],
+                    "include_subject": [],
+                    "min_credit_hours": 15,
                     "min_level_2000": 0,
                     "min_level_3000": 5,
+                    "min_level_4000": 0
+                }
+            }
+        },
+        {
+            "name": "Science Core",
+            "priority": 3,
+            "requirements": {
+                "constraint": {
+                    "count": 6,
+                    "exclude_subject": [],
+                    "include_subject": [
+                        "CHEM",
+                        "BIOL",
+                        "PHYS",
+                        "ESCI"
+                    ],
+                    "min_credit_hours": 18,
+                    "min_level_2000": 0,
+                    "min_level_3000": 0,
+                    "min_level_4000": 0
+                }
+            }
+        },
+        {
+            "name": "Science Labs",
+            "priority": 4,
+            "requirements": {
+                "constraint": {
+                    "count": 4,
+                    "exclude_subject": [],
+                    "include_subject": [
+                        "CHEM",
+                        "BIOL",
+                        "PHYS",
+                        "ESCI"
+                    ],
+                    "min_credit_hours": 8,
+                    "min_level_2000": 0,
+                    "min_level_3000": 0,
+                    "min_level_4000": 0
+                }
+            }
+        },
+        {
+            "name": "CS Core",
+            "priority": 5,
+            "requirements": {
+                "or": [
+                    {
+                        "Coop": false,
+                        "CreditHours": 4,
+                        "Name": "Programming and Problem Solving for Engineers",
+                        "Number": 1003,
+                        "Subject": "CS"
+                    },
+                    {
+                        "Coop": false,
+                        "CreditHours": 4,
+                        "Name": "Introduction to Computer Programming I (in Java)",
+                        "Number": 1073,
+                        "Subject": "CS"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Stats Core",
+            "priority": 6,
+            "requirements": {
+                "and": [
+                    {
+                        "and": [
+                            {
+                                "Coop": false,
+                                "CreditHours": 3,
+                                "Name": "Probability and Mathematical Statistics I",
+                                "Number": 3083,
+                                "Subject": "STAT"
+                            },
+                            {
+                                "Coop": false,
+                                "CreditHours": 3,
+                                "Name": "Probability and Mathematical Statistics II",
+                                "Number": 3093,
+                                "Subject": "STAT"
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "name": "Upper Year Math",
+            "priority": 7,
+            "requirements": {
+                "constraint": {
+                    "count": 5,
+                    "exclude_subject": [],
+                    "include_subject": [
+                        "MATH"
+                    ],
+                    "min_credit_hours": 15,
+                    "min_level_2000": 0,
+                    "min_level_3000": 5,
+                    "min_level_4000": 0
+                }
+            }
+        },
+        {
+            "name": "Free Electives",
+            "priority": 8,
+            "requirements": {
+                "constraint": {
+                    "count": 10,
+                    "exclude_subject": [],
+                    "include_subject": [],
+                    "min_credit_hours": 30,
+                    "min_level_2000": 0,
+                    "min_level_3000": 0,
                     "min_level_4000": 0
                 }
             }

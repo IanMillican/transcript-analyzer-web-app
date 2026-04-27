@@ -1,4 +1,4 @@
-function saveDegree() {
+function saveDegree(overwrite=false) {
     const programName = document.getElementById('degree_name').value.trim();
     if (programName === '') {
         alert('Program name is required');
@@ -20,7 +20,7 @@ function saveDegree() {
     fetch('/create-degree/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(degree)
+        body: JSON.stringify({ ...degree, overwrite: overwrite })
     }).then(function(response) {
         return response.json();
     }).then(function(data) {
@@ -51,10 +51,12 @@ window.addEventListener('load', function() {
 function renderSections(sections) {
     const sectionsDiv = document.querySelector('.sections');
     sectionsDiv.innerHTML = '';
+    const fromEdit = localStorage.getItem('editing_file') !== null;
     sections.forEach(function(section, index) {
+        const href = fromEdit ? `/create-section/?edit=${index}&from=edit` : `/create-section/?edit=${index}`;
         sectionsDiv.insertAdjacentHTML('beforeend', `
             <div class="section-item">
-                <a href="/create-section/?edit=${index}">${section.name}</a>
+                <a href="${href}">${section.name}</a>
                 <button onclick="deleteSection(${index})">Delete</button>
             </div>
         `);

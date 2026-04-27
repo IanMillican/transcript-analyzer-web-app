@@ -1,4 +1,6 @@
 import os
+from glob import glob
+import json
 from exceptions.invalid_argument import InvalidArgumentException
 from data_access.parser.degree_parser import parse_degree
 from domain.model.degree_program.degree import Degree
@@ -25,3 +27,12 @@ def _pretty_print_requirement(req: Requirement, indent: int) -> str:
         for child in req.requirements:
             lines.append(_pretty_print_requirement(child, indent + 2))
         return "\n".join(lines)
+    
+def get_degree_list():
+    path = 'data_access/config/requirements/*.json'
+    degree_list = []
+    for file in glob(path):
+        with open(file, 'r') as f:
+            degree = json.load(f)
+            degree_list.append({'program': degree['program'], 'filename': os.path.basename(file)})
+    return degree_list

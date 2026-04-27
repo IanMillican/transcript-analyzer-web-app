@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block head %}
+    <title>Edit Degree</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit_degree.css') }}">
+{% endblock head %}
+{% block body %}
+    <ul>
+        <li>
+            <label for="degree_name">Program Name: </label>
+            <input type="text" id="degree_name" value="{{ degree.program }}">
+        </li>
+        <li>
+            <label for="excluded_subjects">Excluded Subjects: </label>
+            <input type="text" id="excluded_subjects" value="{{ degree.excluded_subjects | join(', ') }}">
+        </li>
+        <li>
+            <label for="excluded_courses">Excluded Courses: </label>
+            <input type="text" id="excluded_courses" value="{{ degree.excluded_courses | join(', ') }}">
+        </li>
+        <li>
+            <label>Sections</label>
+            <div class="sections">
+                <ul>
+                    {% for section in degree.sections %}
+                        <li><a href="/create-section/?edit={{ loop.index0 }}&from=edit">{{ section.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+    </ul>
+    <button onclick="window.location.href='/create-section/?from=edit'">Add Section</button>
+    <button class="completed_degree" onclick="saveDegree(true)">Update</button>
+    <script>
+        localStorage.setItem('degree_in_progress', JSON.stringify({{ degree | tojson }}));
+        localStorage.setItem('editing_file', '{{ filename }}');
+    </script>
+    <script src="{{ url_for('static', filename='js/create_degree.js') }}"></script>
+{% endblock body %}
