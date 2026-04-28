@@ -2,6 +2,7 @@
     "excluded_courses": [],
     "excluded_subjects": [],
     "program": "BSC",
+    "pw_requirements": {"min_p_ch": 0, "min_p_courses": 0, "min_w_ch": 0, "min_w_courses": 0},
     "sections": [
         {
             "name": "Math Core",

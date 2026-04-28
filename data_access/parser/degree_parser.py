@@ -14,7 +14,8 @@ def parse_degree(path: str) -> Degree:
     parsed_sections = _parse_sections(sections=sections)
     excluded_subjects = program_dict.get("excluded_subjects", [])
     excluded_courses = program_dict.get("excluded_courses", [])
-    degree = Degree(sections=parsed_sections, program=program, excluded_subjects=excluded_subjects, excluded_courses=excluded_courses)
+    pw_reqs = program_dict.get("pw_requirements", {"min_p_ch": 0, "min_p_courses": 0, "min_w_ch": 0, "min_w_courses": 0})
+    degree = Degree(sections=parsed_sections, program=program, excluded_subjects=excluded_subjects, excluded_courses=excluded_courses, pw_requirements=pw_reqs)
     return degree
 
 def _parse_sections(sections: list[dict]) -> list[Section]:

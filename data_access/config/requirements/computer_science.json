@@ -1,7 +1,8 @@
 {
     "program": "BCS",
     "excluded_subjects": [],
-    "excluded_courses": ["CS1003"],
+    "excluded_courses": ["CS1003","CS2704","MATH1823","MATH1833","MATH1843","MATH2633","ADM2623","PHIL3103","UNIV0101","UNIV1001","AESL1011","AESL1012","ECE2213","ECE2214","ECE2215","ECE3221"],
+    "pw_requirements": {"min_p_ch": 9, "min_p_courses": 3, "min_w_ch": 12, "min_w_courses": 1},
     "sections": [
         {
             "name": "CS Core",
