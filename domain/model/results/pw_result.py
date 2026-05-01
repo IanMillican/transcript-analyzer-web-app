@@ -21,3 +21,6 @@ class PWResult:
     def w_satisfied(self) -> bool:
         total_ch = sum(c.credit_hours for c in self.satisfied_w)
         return len(self.satisfied_w) >= self.min_w_courses and total_ch >= self.min_w_ch
+    
+    def __str__(self) -> str:
+        return f"PWResult(p_satisfied={self.p_satisfied}, w_satisfied={self.w_satisfied})"

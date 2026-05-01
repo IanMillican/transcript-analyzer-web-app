@@ -32,8 +32,9 @@ def upload():
             file.save(temp.name)
             path = temp.name
         transcript = parse_transcript(path)
-        degree = get_degree("data_access/config/requirements/bsc.json")
+        degree = get_degree("data_access/config/requirements/computer_science.json")
         result = evaluate_transcript(transcript, degree)
+        print(result.pw_result)
     except (ParsingException, InvalidArgumentException) as e:
         return render_template("index.html", error=str(e))
     finally:
